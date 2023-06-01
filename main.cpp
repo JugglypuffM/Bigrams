@@ -55,7 +55,10 @@ map<string, string> bigrams(const map<string, map<string, int>>& dict){
     for(auto word{dict.begin()}; word != dict.end(); word++){
         int max = -1;
         for(auto freq{word->second.begin()}; freq != word->second.end(); freq++){
-            if (max < freq->second) result[word->first] = freq->first;
+            if (max < freq->second) {
+                result[word->first] = freq->first;
+                max = freq->second;
+            };
         }
     }
     return result;
@@ -66,7 +69,7 @@ int main(){
     string word;
     ifstream fin;
     string text, tmp;
-    fin.open(R"(C:\things\CLion\Bigrams\text.txt)");
+    fin.open(R"(C:\things\CLion\Small Tasks\Bigrams\text.txt)");
     while(!fin.eof()){
         getline(fin, tmp);
         text += tmp;
